@@ -1,11 +1,21 @@
-import React from 'react';
+import React, {createContext} from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-// test
+import Store from "./store/store";
+
+interface RootState {
+	store: Store
+}
+
+const store = new Store();
+
+export const Context = createContext<RootState>({
+	store,
+});
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Context.Provider value={{store}}>
     <App />
-  </React.StrictMode>,
+  </Context.Provider>,
   document.getElementById('root')
 );
